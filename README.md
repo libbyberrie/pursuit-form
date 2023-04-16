@@ -73,3 +73,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 </details>
+
+## Libraries used
+
+For the sake of time, the following libraries were used:
+
+- tailwind.css was used for their utility classes
+- react-hook-form - provided easy hook functionality for me to check for form values in conditional form rendering.

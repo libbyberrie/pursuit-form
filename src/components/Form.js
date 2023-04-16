@@ -6,14 +6,13 @@ export default function Form() {
   const { watch, control, handleSubmit } = useForm();
   function onSubmit(data) {
     console.dir("did the thing");
+    console.dir(learningPlanStatus);
     alert(JSON.stringify(data));
   }
 
   const learningPlanStatus = watch("planned");
-
   return (
     <>
-      <h2>HELLO</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller
           name="planned"
@@ -25,6 +24,8 @@ export default function Form() {
                 fieldName="planned"
                 instruction="This course is identified in my Work Plan and Learning Agreement"
                 options={["yes", "no"]}
+                ref="planned"
+                {...field}
               />
             );
           }}

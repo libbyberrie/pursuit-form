@@ -1,8 +1,7 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
-export default function Radio(props) {
+const Radio = forwardRef(function Radio(props, ref) {
   const { fieldName, instruction, options, required } = { ...props };
-  console.dir(options);
 
   const optionButtons = options.map((entry, index) => {
     return (
@@ -13,6 +12,7 @@ export default function Radio(props) {
           className="form form-radio"
           name={fieldName}
           value={entry}
+          ref={ref}
         />
         <label htmlFor={`${fieldName}-${index}`}>{entry}</label>
       </div>
@@ -26,4 +26,6 @@ export default function Radio(props) {
       </fieldset>
     </>
   );
-}
+});
+
+export default Radio;

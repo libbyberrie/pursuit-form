@@ -1,9 +1,10 @@
 import DefaultTemplate from "./templates/Default";
+import Form from "./components/Form";
 
 function App() {
   return (
     <DefaultTemplate>
-      <h2>Hello world</h2>
+      <Form />
     </DefaultTemplate>
   );
 }

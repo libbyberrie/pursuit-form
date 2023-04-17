@@ -5,7 +5,9 @@ export default function DefaultTemplate(props) {
   return (
     <>
       <Header />
-      <main>{props.children}</main>
+      <main className="max-w-7xl mx-auto outline outline-pursuit-green px-8">
+        {props.children}
+      </main>
       <Footer />
     </>
   );

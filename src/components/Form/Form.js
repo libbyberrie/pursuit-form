@@ -18,19 +18,21 @@ export default function Form() {
   }
 
   const onSubmit = (data, e) => {
-    setSubmitValue(<pre>{JSON.stringify(data, null, 2)}</pre>);
     e.preventDefault();
+    const form = e.target;
     fetch("/", {
       method: "POST",
       body: encode({
         "form-name": "Registration request",
-        ...data,
+        body: data,
       }),
     })
       .then((response) => {
         console.log(response);
       })
-      .catch((error) => alert(error));
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   // document.forms.fileForm.addEventListener("submit", (event) => {

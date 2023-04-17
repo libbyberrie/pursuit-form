@@ -14,9 +14,14 @@ export default function Form() {
     e.preventDefault();
     fetch("/", {
       method: "POST",
-      body: new FormData(e.target),
+      body: encode({
+        "form-name": "Registration request",
+        ...data,
+      }),
     })
-      .then(() => console.log("Form successfully submitted"))
+      .then((response) => {
+        console.log(response);
+      })
       .catch((error) => alert(error));
   };
 

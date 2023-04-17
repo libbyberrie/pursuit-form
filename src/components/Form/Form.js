@@ -21,9 +21,12 @@ export default function Form() {
   const onSubmit = (data, e) => {
     e.preventDefault();
     setSubmitValue(data);
+    // console.dir(e.target);
+    // const help = new FormData(e.target);
+    // console.log(help);
     fetch("/", {
       method: "POST",
-      body: encode({ ...data }),
+      body: new FormData(e.target),
     })
       .then((response) => {
         console.log(response);
@@ -69,6 +72,7 @@ export default function Form() {
         id="registration-request"
       >
         <input type="hidden" name="form-name" value="Registration request" />
+        <input type="hidden" name="Content-Type" value="multipart/form-data" />
 
         <Radio
           fieldName="work-plan-approval"

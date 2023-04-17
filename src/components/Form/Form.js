@@ -9,18 +9,31 @@ export default function Form() {
   const { watch, register, handleSubmit } = useForm();
   const [submitValue, setSubmitValue] = useState();
 
-  const onSubmit = (data) => {
-    console.dir(data.documentation);
+  const onSubmit = (data, e) => {
     setSubmitValue(<pre>{JSON.stringify(data, null, 2)}</pre>);
-
+    e.preventDefault();
     fetch("/", {
       method: "POST",
-      headers: { "Content-Type": "multipart/form-data" },
-      body: submitValue,
+      body: new FormData(e.target),
     })
       .then(() => console.log("Form successfully submitted"))
       .catch((error) => alert(error));
   };
+
+  // document.forms.fileForm.addEventListener("submit", (event) => {
+  //   event.preventDefault();
+  //   const result = document.querySelector(".result");
+  //   fetch("/", {
+  //     body: new FormData(event.target),
+  //     method: "POST",
+  //   })
+  //     .then(() => {
+  //       result.innerText = "Success";
+  //     })
+  //     .catch((error) => {
+  //       result.innerText = `Failed: ${error}`;
+  //     });
+  // });
 
   const learningAgreementValue = watch("work-plan-approval");
 

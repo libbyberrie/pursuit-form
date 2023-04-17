@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
-import Radio from "./fields/Radio";
-import Checkbox from "./fields/CheckBox";
-import TextField from "./fields/TextField";
-import FileUpload from "./fields/FileUpload";
+import Radio from "../fields/Radio";
+import Checkbox from "../fields/CheckBox";
+import TextField from "../fields/TextField";
+import FileUpload from "../fields/FileUpload";
 
 export default function Form() {
   const { watch, register, handleSubmit } = useForm();
@@ -13,7 +13,7 @@ export default function Form() {
     setSubmitValue(<pre>{JSON.stringify(data, null, 2)}</pre>);
   };
 
-  const learningAgreementValue = watch("planned");
+  const learningAgreementValue = watch("work-plan-approval");
 
   const reasonRequirement = useMemo(() => {
     switch (learningAgreementValue) {
@@ -24,12 +24,30 @@ export default function Form() {
     }
   }, [learningAgreementValue]);
 
+  const accessibilityValue = watch("adjustments-required");
+
+  const accessibilityRequirement = useMemo(() => {
+    switch (accessibilityValue) {
+      case "no":
+        return true;
+      default:
+        return false;
+    }
+  }, [accessibilityValue]);
+
   return (
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-y-6 p-4"
+        method="POST"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        name="Registration request"
+        id="registration-request"
       >
+        <input type="hidden" name="form-name" value="enquiry" />
+
         <Radio
           fieldName="work-plan-approval"
           instruction="This course is identified in my Work Plan and Learning Agreement"
@@ -66,7 +84,7 @@ export default function Form() {
         <TextField
           fieldName="accessibility-details"
           instruction="Please provide details of your requirements."
-          required={false}
+          required={accessibilityRequirement}
           register={register}
         />
         <FileUpload

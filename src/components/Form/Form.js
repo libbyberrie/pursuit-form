@@ -8,9 +8,18 @@ import FileUpload from "../fields/FileUpload";
 export default function Form() {
   const { watch, register, handleSubmit } = useForm();
   const [submitValue, setSubmitValue] = useState();
+
   const onSubmit = (data) => {
     console.dir(data.documentation);
     setSubmitValue(<pre>{JSON.stringify(data, null, 2)}</pre>);
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "multipart/form-data" },
+      body: submitValue,
+    })
+      .then(() => console.log("Form successfully submitted"))
+      .catch((error) => alert(error));
   };
 
   const learningAgreementValue = watch("work-plan-approval");
@@ -28,7 +37,7 @@ export default function Form() {
 
   const accessibilityRequirement = useMemo(() => {
     switch (accessibilityValue) {
-      case "no":
+      case "yes":
         return true;
       default:
         return false;
@@ -41,6 +50,7 @@ export default function Form() {
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-y-6 p-4"
         method="POST"
+        netlify="true"
         encType="multipart/form-data"
         data-netlify="true"
         data-netlify-honeypot="bot-field"

@@ -41,6 +41,7 @@ export default function Form() {
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-y-6 p-4"
         method="POST"
+        encType="multipart/form-data"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
         name="Registration request"

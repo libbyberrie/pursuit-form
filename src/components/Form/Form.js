@@ -20,13 +20,10 @@ export default function Form() {
 
   const onSubmit = (data, e) => {
     e.preventDefault();
-    const form = e.target;
+    setSubmitValue(data);
     fetch("/", {
       method: "POST",
-      body: encode({
-        "form-name": "Registration request",
-        ...data,
-      }),
+      body: encode({ ...data }),
     })
       .then((response) => {
         console.log(response);
@@ -71,7 +68,7 @@ export default function Form() {
         name="Registration request"
         id="registration-request"
       >
-        <input type="hidden" name="form-name" value="enquiry" />
+        <input type="hidden" name="form-name" value="Registration request" />
 
         <Radio
           fieldName="work-plan-approval"
@@ -120,8 +117,6 @@ export default function Form() {
         />
         <input type="submit" />
       </form>
-
-      <pre>{submitValue}</pre>
     </>
   );
 }

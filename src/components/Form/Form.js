@@ -13,12 +13,10 @@ export default function Form() {
     console.dir(data.documentation);
     setSubmitValue(<pre>{JSON.stringify(data, null, 2)}</pre>);
 
-    const formData = new FormData(data);
-
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "multipart/form-data" },
-      body: new URLSearchParams(formData).toString(),
+      body: submitValue,
     })
       .then(() => console.log("Form successfully submitted"))
       .catch((error) => alert(error));
@@ -39,7 +37,7 @@ export default function Form() {
 
   const accessibilityRequirement = useMemo(() => {
     switch (accessibilityValue) {
-      case "no":
+      case "yes":
         return true;
       default:
         return false;

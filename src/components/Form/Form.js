@@ -24,7 +24,7 @@ export default function Form() {
       method: "POST",
       body: encode({
         "form-name": "Registration request",
-        body: data,
+        ...data,
       }),
     })
       .then((response) => {
@@ -34,21 +34,6 @@ export default function Form() {
         console.log(error);
       });
   };
-
-  // document.forms.fileForm.addEventListener("submit", (event) => {
-  //   event.preventDefault();
-  //   const result = document.querySelector(".result");
-  //   fetch("/", {
-  //     body: new FormData(event.target),
-  //     method: "POST",
-  //   })
-  //     .then(() => {
-  //       result.innerText = "Success";
-  //     })
-  //     .catch((error) => {
-  //       result.innerText = `Failed: ${error}`;
-  //     });
-  // });
 
   const learningAgreementValue = watch("work-plan-approval");
 

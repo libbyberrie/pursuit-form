@@ -8,9 +8,23 @@ import FileUpload from "../fields/FileUpload";
 export default function Form() {
   const { watch, register, handleSubmit } = useForm();
   const [submitValue, setSubmitValue] = useState();
+  
+  
   const onSubmit = (data) => {
     console.dir(data.documentation);
     setSubmitValue(<pre>{JSON.stringify(data, null, 2)}</pre>);
+
+    const formData = new FormData(data);
+    
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "multipart/form-data" },
+      body: new URLSearchParams(formData).toString(),
+    })
+      .then(() => console.log("Form successfully submitted"))
+      .catch((error) => alert(error));
+  };
+
   };
 
   const learningAgreementValue = watch("work-plan-approval");

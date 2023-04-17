@@ -1,6 +1,9 @@
-# Getting Started with Create React App
+# Pursuit Technical Assessment - student application form.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Originally bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+<details>
+<summary>Create React App original readme documentation</summary>
 
 ## Available Scripts
 
@@ -68,3 +71,12 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+</details>
+
+## Libraries used
+
+For the sake of time, the following libraries were used:
+
+- tailwind.css was used for their utility classes
+- react-hook-form - provided easy hook functionality for me to check for form values in conditional form rendering.

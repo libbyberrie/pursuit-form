@@ -9,6 +9,14 @@ export default function Form() {
   const { watch, register, handleSubmit } = useForm();
   const [submitValue, setSubmitValue] = useState();
 
+  function encode(data) {
+    return Object.keys(data)
+      .map(
+        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+      )
+      .join("&");
+  }
+
   const onSubmit = (data, e) => {
     setSubmitValue(<pre>{JSON.stringify(data, null, 2)}</pre>);
     e.preventDefault();

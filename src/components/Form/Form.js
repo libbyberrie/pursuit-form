@@ -10,14 +10,6 @@ export default function Form() {
   const { watch, register, handleSubmit } = useForm();
   const [submitValue, setSubmitValue] = useState();
 
-  function encode(data) {
-    return Object.keys(data)
-      .map(
-        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
-      )
-      .join("&");
-  }
-
   const onSubmit = (data, e) => {
     e.preventDefault();
     setSubmitValue(data);
@@ -29,6 +21,7 @@ export default function Form() {
       body: new FormData(e.target),
     })
       .then((response) => {
+        console.dir(data);
         console.log(response);
       })
       .catch((error) => {
@@ -68,10 +61,10 @@ export default function Form() {
         encType="multipart/form-data"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
-        name="Registration request"
+        name="registration-request"
         id="registration-request"
       >
-        <input type="hidden" name="form-name" value="Registration request" />
+        <input type="hidden" name="form-name" value="registration-request" />
         <input type="hidden" name="Content-Type" value="multipart/form-data" />
 
         <Radio

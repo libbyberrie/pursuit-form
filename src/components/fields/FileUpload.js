@@ -4,7 +4,7 @@ export default function FileUpload(props) {
   const { fieldName, instruction, detail, required, register } = { ...props };
 
   return (
-    <div class="w-4/5 lg:w-3/4 mx-auto flex flex-col items-center justify-center gap-4">
+    <div className="w-4/5 lg:w-3/4 mx-auto flex flex-col items-center justify-center gap-4">
       <label className="font-semibold" htmlFor={`${fieldName}-file`}>
         <span className="text-lg">{instruction}</span>
         {detail && (

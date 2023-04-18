@@ -30,6 +30,7 @@ export default function Form() {
   };
 
   const learningAgreementValue = watch("work-plan-approval");
+  const accessibilityValue = watch("adjustments-required");
 
   const reasonRequirement = useMemo(() => {
     switch (learningAgreementValue) {
@@ -39,9 +40,6 @@ export default function Form() {
         return false;
     }
   }, [learningAgreementValue]);
-
-  const accessibilityValue = watch("adjustments-required");
-
   const accessibilityRequirement = useMemo(() => {
     switch (accessibilityValue) {
       case "yes":
@@ -50,6 +48,18 @@ export default function Form() {
         return false;
     }
   }, [accessibilityValue]);
+
+  const showOnValue = useMemo(
+    () => ({
+      planned: reasonRequirement
+        ? "opacity-[100%] h-[100%] max-h-[500px]"
+        : "opacity-[0%] max-h-[0px] pointer-events-none",
+      accessibility: accessibilityRequirement
+        ? "opacity-[100%] h-[100%] max-h-[500px]"
+        : "opacity-[0%] max-h-[0px] pointer-events-none",
+    }),
+    [accessibilityRequirement, reasonRequirement]
+  );
 
   return (
     <>
@@ -74,27 +84,33 @@ export default function Form() {
           required={true}
           register={register}
         />
-        <Checkbox
-          fieldName="reasons"
-          instruction="I am attending this session because"
-          detail="(tick all that apply)"
-          options={[
-            "It will help me develop the skills and knowledge required for my current role",
-            "It will help me develop the skills and knowledge for a possible future role/body of work",
-            "It was identified as a need during my performance management discussions",
-            "My manager recommended that I attend",
-            "I am interested in the content",
-          ]}
-          required={reasonRequirement}
-          register={register}
-        />
-        <TextField
-          fieldName="aims"
-          instruction="What would you like to achieve as a result of your attendance?"
-          detail="For example, 'I would like to learn to write better emails to improve my communication skills'."
-          required={false}
-          register={register}
-        />
+        <div
+          className={`flex flex-col gap-y-10 transition-all duration-300 ease-in-out ${showOnValue.planned}`}
+          aria-hidden={!reasonRequirement}
+        >
+          <Checkbox
+            fieldName="reasons"
+            instruction="I am attending this session because"
+            detail="(tick all that apply)"
+            options={[
+              "It will help me develop the skills and knowledge required for my current role",
+              "It will help me develop the skills and knowledge for a possible future role/body of work",
+              "It was identified as a need during my performance management discussions",
+              "My manager recommended that I attend",
+              "I am interested in the content",
+            ]}
+            required={reasonRequirement}
+            register={register}
+          />
+          <TextField
+            fieldName="aims"
+            instruction="What would you like to achieve as a result of your attendance?"
+            detail="For example, 'I would like to learn to write better emails to improve my communication skills'."
+            required={false}
+            register={register}
+          />
+        </div>
+
         <Radio
           fieldName="adjustments-required"
           instruction="Do you require adjustments or additions to the session delivery to support your participation?"
@@ -103,12 +119,17 @@ export default function Form() {
           required={false}
           register={register}
         />
-        <TextField
-          fieldName="accessibility-details"
-          instruction="Please provide details of your requirements."
-          required={accessibilityRequirement}
-          register={register}
-        />
+        <div
+          className={`transition-all duration-300 ease-in-out ${showOnValue.accessibility}`}
+          aria-hidden={!accessibilityRequirement}
+        >
+          <TextField
+            fieldName="accessibility-details"
+            instruction="Please provide details of your requirements."
+            required={accessibilityRequirement}
+            register={register}
+          />
+        </div>
         <FileUpload
           instruction="Please upload any supporting documentation to support your registration request"
           detail="Hold shift or control to select multiple documents. Accepted file formats are .txt, .doc, .docx and .zip"

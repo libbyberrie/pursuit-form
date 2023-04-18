@@ -31,7 +31,7 @@ export default function Radio(props) {
         className="flex items-center justify-center gap-4"
         required={required}
       >
-        <legend className="text-zinc-800 font-semibold w-4/5 md:3/4 mx-auto text-center mb-2 outline-black">
+        <legend className="text-zinc-800 font-semibold mx-auto mb-2 outline-black">
           {instruction}
           {detail && (
             <span className="detail text-sm text-zinc-600">

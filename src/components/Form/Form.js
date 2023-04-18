@@ -55,7 +55,7 @@ export default function Form() {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-y-6 p-4"
+        className="flex flex-col gap-y-10 p-4"
         method="POST"
         netlify="true"
         encType="multipart/form-data"
@@ -111,6 +111,7 @@ export default function Form() {
         />
         <FileUpload
           instruction="Please upload any supporting documentation to support your registration request"
+          detail="Hold shift or control to select multiple documents. Accepted file formats are .txt, .doc, .docx and .zip"
           fieldName="documentation"
           required="false"
           register={register}

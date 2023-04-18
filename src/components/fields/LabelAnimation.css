@@ -7,11 +7,6 @@
   @apply text-red-700;
 }
 
-/* Placeholder shown styles */
-.dynamic-label textarea:placeholder-shown + label {
-  @apply top-2 text-base text-zinc-500;
-}
-
 /* Focus styles */
 
 .dynamic-label textarea:focus-visible,
@@ -20,8 +15,15 @@
 }
 
 .dynamic-label textarea:focus + label,
-.dynamic-label textarea:active + label {
+.dynamic-label textarea:active + label,
+.dynamic-label textarea:not(:placeholder-shown) + label {
   @apply -top-3.5  text-zinc-800 translate-y-0;
+}
+.dynamic-label textarea:not(:placeholder-shown) + label .detail {
+  @apply opacity-0;
+}
+.dynamic-label textarea:invalid + label {
+  @apply top-1/2 -translate-y-1/2;
 }
 .dynamic-label textarea:focus + label span.detail,
 .dynamic-label textarea:active + label span.detail {

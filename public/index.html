@@ -32,13 +32,14 @@
     This hidden markup is used to ensure the JSX version of the form is detected
     in Netlify -->
     <form
-      name="Registration request"
-      netlify
+      name="registration-request"
+      netlify="true"
       data-netlify="true"
       enctype="multipart/form-data"
       netlify-honeypot="bot-field"
       hidden
     >
+      <input type="text" name="form-name" />
       <input type="radio" name="work-plan-approval" />
       <input type="checkbox" name="reasons" />
       <textarea name="aims"></textarea>

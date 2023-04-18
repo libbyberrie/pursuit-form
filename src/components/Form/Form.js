@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import Radio from "../fields/Radio";
@@ -9,17 +10,23 @@ export default function Form() {
   const { watch, register, handleSubmit } = useForm();
   const [submitValue, setSubmitValue] = useState();
 
-  const onSubmit = (data) => {
-    console.dir(data.documentation);
-    setSubmitValue(<pre>{JSON.stringify(data, null, 2)}</pre>);
-
+  const onSubmit = (data, e) => {
+    e.preventDefault();
+    setSubmitValue(data);
+    // console.dir(e.target);
+    // const help = new FormData(e.target);
+    // console.log(help);
     fetch("/", {
       method: "POST",
-      headers: { "Content-Type": "multipart/form-data" },
-      body: submitValue,
+      body: new FormData(e.target),
     })
-      .then(() => console.log("Form successfully submitted"))
-      .catch((error) => alert(error));
+      .then((response) => {
+        console.dir(data);
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const learningAgreementValue = watch("work-plan-approval");
@@ -54,10 +61,11 @@ export default function Form() {
         encType="multipart/form-data"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
-        name="Registration request"
+        name="registration-request"
         id="registration-request"
       >
-        <input type="hidden" name="form-name" value="enquiry" />
+        <input type="hidden" name="form-name" value="registration-request" />
+        <input type="hidden" name="Content-Type" value="multipart/form-data" />
 
         <Radio
           fieldName="work-plan-approval"
@@ -106,8 +114,6 @@ export default function Form() {
         />
         <input type="submit" />
       </form>
-
-      <pre>{submitValue}</pre>
     </>
   );
 }

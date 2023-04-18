@@ -1,7 +1,15 @@
 import React from "react";
 
 export default function Checkbox(props) {
-  const { fieldName, instruction, options, required, detail, register } = {
+  const {
+    fieldName,
+    instruction,
+    options,
+    required,
+    disabled,
+    detail,
+    register,
+  } = {
     ...props,
   };
 
@@ -14,7 +22,7 @@ export default function Checkbox(props) {
           className="form form-checkbox mr-2 h-8 w-8 rounded-xl transition-all duration-300 border-pursuit-green hover:bg-pursuit-green-dark  active:bg-pursuit-green-dark bg-transparent checked:bg-pursuit-green checked:border-pursuit-green-light"
           name={fieldName}
           value={entry}
-          {...register(fieldName, { required: required })}
+          {...register(fieldName, { required: required, disabled: disabled })}
         />
         <label htmlFor={`${fieldName}-${index}`}>{entry}</label>
       </div>

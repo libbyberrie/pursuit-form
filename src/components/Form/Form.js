@@ -76,7 +76,8 @@ export default function Form() {
         />
         <Checkbox
           fieldName="reasons"
-          instruction="I am attending this session because (tick all that apply)"
+          instruction="I am attending this session because"
+          detail="(tick all that apply)"
           options={[
             "It will help me develop the skills and knowledge required for my current role",
             "It will help me develop the skills and knowledge for a possible future role/body of work",
@@ -89,13 +90,15 @@ export default function Form() {
         />
         <TextField
           fieldName="aims"
-          instruction="What would you like to achieve as a result of your attendance? For example, 'I would like to learn to write better emails to improve my communication skills'."
+          instruction="What would you like to achieve as a result of your attendance?"
+          detail="For example, 'I would like to learn to write better emails to improve my communication skills'."
           required={false}
           register={register}
         />
         <Radio
           fieldName="adjustments-required"
-          instruction="Do you require adjustments or additions to the session delivery to support your participation? For example, hearing loop or wheelchair access"
+          instruction="Do you require adjustments or additions to the session delivery to support your participation?"
+          detail="For example, hearing loop or wheelchair access."
           options={["yes", "no"]}
           required={false}
           register={register}

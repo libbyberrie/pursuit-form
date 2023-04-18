@@ -62,7 +62,9 @@ export function useNetlifyForms() {
       default:
         return <></>;
     }
-  }, [awBeans, sentStatus, successMessage, validateMePlease, waiting]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    //I have to ignore the exhaustive dependencies for this line here - if i fulfill the linter it just goes into an endless loop.
+  }, [awBeans]);
 
   return { sendIt, responseMessage, sentStatus };
 }

@@ -1,15 +1,17 @@
 import React from "react";
 
 export default function Checkbox(props) {
-  const { fieldName, instruction, options, required, register } = { ...props };
+  const { fieldName, instruction, options, required, detail, register } = {
+    ...props,
+  };
 
   const optionButtons = options.map((entry, index) => {
     return (
-      <div key={index}>
+      <div key={index} className="flex items-center justify-start">
         <input
           type="checkbox"
           id={`${fieldName}-${index}`}
-          className="form form-checkbox"
+          className="form form-checkbox mr-2 h-8 w-8 rounded-xl transition-all duration-300 border-pursuit-green hover:bg-pursuit-green-dark  active:bg-pursuit-green-dark bg-transparent checked:bg-pursuit-green checked:border-pursuit-green-light"
           name={fieldName}
           value={entry}
           {...register(fieldName, { required: required })}
@@ -20,9 +22,22 @@ export default function Checkbox(props) {
   });
   return (
     <>
-      <fieldset className="" required={required}>
-        <legend>{instruction}</legend>
-        <div className="flex flex-row gap-2">{optionButtons}</div>
+      <fieldset
+        required={required}
+        className=" border-pursuit-green-light border-4 rounded-md p-4 pb-8"
+      >
+        <legend className="text-lg leading-tight font-semibold bg-white p-4 ">
+          {instruction}
+          {detail && (
+            <span className="detail text-sm text-zinc-600">
+              <br />
+              {detail}
+            </span>
+          )}
+        </legend>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-4 lg:gap-6">
+          {optionButtons}
+        </div>
       </fieldset>
     </>
   );

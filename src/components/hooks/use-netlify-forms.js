@@ -10,7 +10,7 @@ export function useNetlifyForms() {
       body: new FormData(event.target),
     })
       .then((response) => {
-        if (response && response.status == 200) {
+        if (response && response.status === 200) {
           setSentStatus("success");
         } else {
           setSentStatus("error");
@@ -48,6 +48,7 @@ export function useNetlifyForms() {
       This will be replaced with a better error message eventually!
     </div>
   );
+
   const responseMessage = useMemo(() => {
     switch (sentStatus) {
       case "sending":
@@ -61,7 +62,7 @@ export function useNetlifyForms() {
       default:
         return <></>;
     }
-  }, [sentStatus]);
+  }, [awBeans, sentStatus, successMessage, validateMePlease, waiting]);
 
   return { sendIt, responseMessage, sentStatus };
 }

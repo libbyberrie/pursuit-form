@@ -100,6 +100,7 @@ export default function Form() {
               "I am interested in the content",
             ]}
             required={reasonRequirement}
+            disabled={!reasonRequirement}
             register={register}
           />
           <TextField
@@ -107,6 +108,7 @@ export default function Form() {
             instruction="What would you like to achieve as a result of your attendance?"
             detail="For example, 'I would like to learn to write better emails to improve my communication skills'."
             required={false}
+            disabled={!reasonRequirement}
             register={register}
           />
         </div>
@@ -127,6 +129,7 @@ export default function Form() {
             fieldName="accessibility-details"
             instruction="Please provide details of your requirements."
             required={accessibilityRequirement}
+            disabled={!accessibilityRequirement}
             register={register}
           />
         </div>

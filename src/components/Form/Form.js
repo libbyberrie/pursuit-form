@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNetlifyForms } from "../hooks/use-netlify-forms";
+
 import Radio from "../fields/Radio";
 import Checkbox from "../fields/CheckBox";
 import TextField from "../fields/TextField";
@@ -8,25 +10,11 @@ import FileUpload from "../fields/FileUpload";
 
 export default function Form() {
   const { watch, register, handleSubmit } = useForm();
-  const [submitValue, setSubmitValue] = useState();
+  const { sendIt, responseMessage, sentStatus } = useNetlifyForms();
 
   const onSubmit = (data, e) => {
     e.preventDefault();
-    setSubmitValue(data);
-    // console.dir(e.target);
-    // const help = new FormData(e.target);
-    // console.log(help);
-    fetch("/", {
-      method: "POST",
-      body: new FormData(e.target),
-    })
-      .then((response) => {
-        console.dir(data);
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    sendIt(data, e);
   };
 
   const learningAgreementValue = watch("work-plan-approval");
@@ -140,7 +128,17 @@ export default function Form() {
           required="false"
           register={register}
         />
-        <input type="submit" />
+        <div
+          id="response-zone"
+          className="flex flex-col items-center justify-center gap-6"
+        >
+          <input
+            type="submit"
+            className="px-8 py-3 text-2xl rounded-3xl text-semibold bg-pursuit-green-light text-pursuit-green border-4 border-pursuit-green hover:bg-pursuit-green-dark hover:text-white disabled:grayscale disabled:opacity-70 disabled:pointer-events-none"
+            disabled={sentStatus && sentStatus !== "unsent"}
+          />
+          {responseMessage}
+        </div>
       </form>
     </>
   );

@@ -74,17 +74,8 @@ export function useMailtrapSender() {
     </div>
   );
   const awBeans = (
-    <div className="bg-rose-200 border-4 rounded-md p-12 text-center border-rose-500 text-rose-700">
-      Something went wrong.
-      {responseData && (
-        <span> Netlify's servers returned a {responseData.status}. </span>
-      )}
-      Please contact your administrator.
-    </div>
-  );
-  const validateMePlease = (
-    <div className="bg-rose-200 border-4 rounded-md p-12 text-center border-rose-500 text-rose-700">
-      This will be replaced with a better error message eventually!
+    <div className="bg-rose-200 border-4 rounded-md p-6 text-center border-rose-500 text-rose-700">
+      Something went wrong. Please contact your administrator.
     </div>
   );
 

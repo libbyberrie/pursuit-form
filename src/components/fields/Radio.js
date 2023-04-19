@@ -32,7 +32,7 @@ export default function Radio(props) {
   return (
     <>
       <fieldset
-        className="flex flex-col-reverse group items-start justify-center gap-4 dynamic-label"
+        className="flex flex-col-reverse group items-start justify-center gap-4"
         required={required}
       >
         <legend className="text-zinc-800 font-semibold mx-auto mb-2 peer-invalid:text-rose-600">

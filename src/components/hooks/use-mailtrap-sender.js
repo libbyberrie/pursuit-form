@@ -12,7 +12,8 @@ export function useMailtrapSender() {
         ? data.reasons.join(", ")
         : data.reasons;
     const emailData = {
-      fullname: "name",
+      fullname: data["full-name"],
+      email: data["email"],
       plan: data["work-plan-approval"],
       reasons: formatReasons,
       aims: data.aims,

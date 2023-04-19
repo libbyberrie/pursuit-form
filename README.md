@@ -80,3 +80,10 @@ For the sake of time, the following libraries were used:
 
 - tailwind.css was used for their utility classes
 - react-hook-form - provided easy hook functionality for me to check for form values in conditional form rendering.
+
+For mail sending and data collection...
+
+- Netlify was originally used to start receiving form data, however they do not support sending files attachments- nor multiple files in one field.
+  - We changed mailing solution but i kept the post request to netlify in there as it was good for tracking form data-structure as it was sent.
+- EmailJS was used as a "serverless" delivery service, as it allowed me to send "from" the email address i registered my account with. (This was chosen as i did not have the time to purchase/conofigure a domain for sending at this time)
+-

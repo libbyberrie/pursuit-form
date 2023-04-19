@@ -6,6 +6,7 @@ import { useMailtrapSender } from "../hooks/use-mailtrap-sender";
 import Radio from "../fields/Radio";
 import Checkbox from "../fields/CheckBox";
 import TextField from "../fields/TextField";
+import TextBox from "../fields/TextBox";
 import FileUpload from "../fields/FileUpload";
 
 export default function Form() {
@@ -71,7 +72,40 @@ export default function Form() {
       >
         <input type="hidden" name="form-name" value="registration-request" />
         <input type="hidden" name="Content-Type" value="multipart/form-data" />
-
+        <div className="flex flex-col lg:flex-row gap-4 w-full md:w-[90%]">
+          <div className="relative flex-1">
+            <span
+              className={`${errorClasses} ${
+                errors["full-name"] && "opacity-100"
+              }`}
+              aria-hidden={!errors["full-name"]}
+            >
+              {errors["full-name"] && errors["full-name"].message}
+            </span>
+            <TextBox
+              type="text"
+              fieldName="full-name"
+              instruction="Your name"
+              required={true}
+              register={register}
+            />
+          </div>
+          <div className="relative flex-1">
+            <span
+              className={`${errorClasses} ${errors["email"] && "opacity-100"}`}
+              aria-hidden={!errors["email"]}
+            >
+              {errors["email"] && errors["email"].message}
+            </span>
+            <TextBox
+              type="email"
+              fieldName="email"
+              instruction="Email address"
+              required={true}
+              register={register}
+            />
+          </div>
+        </div>
         <div className="relative">
           <span
             className={`${errorClasses} ${
@@ -185,7 +219,7 @@ export default function Form() {
 
         <div
           id="response-zone"
-          className="flex flex-col items-center justify-center gap-6"
+          className="flex flex-col items-start justify-center gap-6"
         >
           {responseMessage}
           <input

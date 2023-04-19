@@ -17,10 +17,14 @@ export function useMailtrapSender() {
   function sendIt(data, event) {
     setSentStatus("sending");
 
+    const formatReasons =
+      typeof data.reasons === Array && data.reasons.length > 1
+        ? data.reasons.join(", ")
+        : data.reasons;
     const emailData = {
       fullname: "name",
       plan: data["work-plan-approval"],
-      reasons: data.reasons.join(", "),
+      reasons: formatReasons,
       aims: data.aims,
       adjustments: data["adjustments-required"],
       details: data["accessibility-details"],
@@ -38,7 +42,7 @@ export function useMailtrapSender() {
             .send("service_67ywmvb", templateId, emailData)
             .then((res) => {
               console.log("Email successfully sent!");
-              console.dir(data);
+              console.dir(emailData);
               console.dir(res);
               setSentStatus("success");
             })

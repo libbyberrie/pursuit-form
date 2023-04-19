@@ -6,6 +6,14 @@ export function useMailtrapSender() {
     console.log("sent to hook successfully");
     setSentStatus("sending");
 
+    const emailData = {
+      plan: data["work-plan-approval"],
+      reasons: data.reasons,
+      aims: data.aims,
+      adjustments: data["adjustments-required"],
+      details: data["accessibility-details"],
+      docs: data.documentation,
+    };
     // const filteredData = data.fromEntries(
     //   data.entries.filter(([_, v]) => v != null)
     // );
@@ -22,7 +30,7 @@ export function useMailtrapSender() {
 
           const templateId = "template_5f9my3a";
           window.emailjs
-            .send("service_67ywmvb", templateId, this)
+            .send("service_67ywmvb", templateId, emailData)
             .then((res) => {
               console.log("Email successfully sent!");
               console.dir(res);

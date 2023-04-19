@@ -7,7 +7,8 @@ export function useMailtrapSender() {
   function zipIt(fileInput) {
     const zip = new JSZip();
 
-    fileInput.forEach((file) => zip.file(file.name, file));
+    const fileArray = [...fileInput];
+    fileArray.forEach((file) => zip.file(file.name, file));
 
     zip.generateAsync({ type: "blob" }).then((blob) => {
       const zippedFiles = new File([blob], "submission-zip.zip", {
@@ -19,7 +20,6 @@ export function useMailtrapSender() {
   }
 
   function sendIt(data, event) {
-    console.log("sent to hook successfully");
     setSentStatus("sending");
 
     const emailData = {
@@ -31,10 +31,7 @@ export function useMailtrapSender() {
       details: data["accessibility-details"],
       doczip: zipIt(data.documentation),
     };
-    // const filteredData = data.fromEntries(
-    //   data.entries.filter(([_, v]) => v != null)
-    // );
-    // console.dir(filteredData);
+
     fetch("/", {
       method: "POST",
       body: new FormData(event.target),
@@ -42,21 +39,21 @@ export function useMailtrapSender() {
       .then((response) => {
         if (response && response.status === 200) {
           setSentStatus("success");
-          console.log("we are gonna send an email now");
-          console.dir(data);
+          // console.log("we are gonna send an email now");
+          // console.dir(data);
 
           const templateId = "template_5f9my3a";
           window.emailjs
             .send("service_67ywmvb", templateId, emailData)
             .then((res) => {
-              console.log("Email successfully sent!");
-              console.dir(res);
+              // console.log("Email successfully sent!");
+              // console.dir(res);
             })
             .catch((err) => console.error(err));
         } else {
           setSentStatus("error");
         }
-        console.dir(data);
+        // console.dir(data);
         setResponseData(response);
       })
       .catch((error) => {

@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-export function useNetlifyForms() {
+export function useMailtrapSender() {
   const [sentStatus, setSentStatus] = useState("unsent");
   const [responseData, setResponseData] = useState();
   function sendIt(data, event) {
@@ -12,6 +12,7 @@ export function useNetlifyForms() {
       .then((response) => {
         if (response && response.status === 200) {
           setSentStatus("success");
+          sendEmail(event.target.value);
         } else {
           setSentStatus("error");
         }
@@ -22,6 +23,20 @@ export function useNetlifyForms() {
         setSentStatus("error");
         console.log(error);
       });
+  }
+
+  async function sendEmail(data) {
+    const emailDetails = {
+      message: data,
+    };
+    const templateId = "template_5f9my3a";
+    window.emailjs
+      .send("service_67ywmvb", templateId, emailDetails)
+      .then((res) => {
+        console.log("Email successfully sent!");
+        console.dir(res);
+      })
+      .catch((err) => console.error(err));
   }
 
   const waiting = (

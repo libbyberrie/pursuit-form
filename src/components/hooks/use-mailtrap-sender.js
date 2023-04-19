@@ -17,7 +17,7 @@ export function useMailtrapSender() {
       .then((response) => {
         if (response && response.status === 200) {
           setSentStatus("success");
-          sendEmail(data);
+          sendEmail(event);
         } else {
           setSentStatus("error");
         }
@@ -34,16 +34,11 @@ export function useMailtrapSender() {
     console.log("we are gonna send an email now");
     console.dir(data);
 
-    const emailDetails = {
-      message: data,
-      attachments: data.documentation,
-    };
     const templateId = "template_5f9my3a";
     window.emailjs
-      .send("service_67ywmvb", templateId, emailDetails)
+      .send("service_67ywmvb", templateId, data)
       .then((res) => {
         console.log("Email successfully sent!");
-        console.dir(emailDetails);
         console.dir(res);
       })
       .catch((err) => console.error(err));

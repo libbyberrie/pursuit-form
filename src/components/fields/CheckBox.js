@@ -12,7 +12,7 @@ export default function Checkbox(props) {
   } = {
     ...props,
   };
-
+  console.dir(register);
   const optionButtons = options.map((entry, index) => {
     return (
       <div key={index} className="flex items-center justify-start">
@@ -22,7 +22,10 @@ export default function Checkbox(props) {
           className="form form-checkbox mr-2 h-8 w-8 rounded-xl transition-all duration-300 border-pursuit-green hover:bg-pursuit-green-dark  active:bg-pursuit-green-dark bg-transparent checked:bg-pursuit-green checked:border-pursuit-green-light"
           name={fieldName}
           value={entry}
-          {...register(fieldName, { required: required, disabled: disabled })}
+          {...register(fieldName, {
+            required: required && "This field is required",
+            disabled: disabled,
+          })}
         />
         <label htmlFor={`${fieldName}-${index}`}>{entry}</label>
       </div>

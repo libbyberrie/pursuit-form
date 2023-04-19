@@ -1,3 +1,4 @@
+/*Text fields*/
 /* Invalid styles */
 .dynamic-label textarea:invalid:not(:placeholder-shown) {
   @apply border-red-400;
@@ -17,7 +18,7 @@
 .dynamic-label textarea:focus + label,
 .dynamic-label textarea:active + label,
 .dynamic-label textarea:not(:placeholder-shown) + label {
-  @apply -top-3.5  text-zinc-800 translate-y-0;
+  @apply -top-4 md:-top-3.5  text-zinc-800 translate-y-0;
 }
 .dynamic-label textarea:not(:placeholder-shown) + label .detail {
   @apply opacity-0;

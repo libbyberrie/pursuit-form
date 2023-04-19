@@ -38,6 +38,7 @@ export default function Checkbox(props) {
         className=" border-pursuit-green-light border-4 rounded-md p-4 pb-8"
       >
         <legend className="text-lg leading-tight font-semibold bg-white p-4 ">
+          {required && <span>*</span>}
           {instruction}
           {detail && (
             <span className="detail text-sm text-zinc-600">

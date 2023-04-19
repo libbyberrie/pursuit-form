@@ -23,6 +23,7 @@ export default function TextField(props) {
         htmlFor={`${fieldName}-input`}
       >
         <span className="bg-white md:p-2 text-base md:text-lg">
+          {required && <span>*</span>}
           {instruction}
         </span>
         {detail && (

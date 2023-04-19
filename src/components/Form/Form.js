@@ -48,7 +48,7 @@ export default function Form() {
         : "opacity-[0%] max-h-[0px] pointer-events-none",
       accessibility: accessibilityRequirement
         ? "opacity-[100%] h-[100%] max-h-[2000px] md:max-h-[700px] w-full md:w-[85%] pb-8"
-        : "opacity-[0%] max-h-[0px] pointer-events-none",
+        : "opacity-[0%] max-h-[0px] pointer-events-none w-full md:w-[85%]",
     }),
     [accessibilityRequirement, reasonRequirement]
   );

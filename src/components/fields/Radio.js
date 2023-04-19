@@ -36,6 +36,7 @@ export default function Radio(props) {
         required={required}
       >
         <legend className="text-zinc-800 font-semibold mx-auto mb-2 peer-invalid:text-rose-600">
+          {required && <span>*</span>}
           {instruction}
           {detail && (
             <span className="detail text-sm text-zinc-600">

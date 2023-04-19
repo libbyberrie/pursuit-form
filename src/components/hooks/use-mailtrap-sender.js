@@ -2,7 +2,6 @@ import React, { useMemo, useState } from "react";
 import JSZip from "jszip";
 export function useMailtrapSender() {
   const [sentStatus, setSentStatus] = useState("unsent");
-  const [responseData, setResponseData] = useState();
 
   function sendToEmailJs(data, event, files) {
     setSentStatus("sending");
@@ -41,7 +40,6 @@ export function useMailtrapSender() {
         } else {
           setSentStatus("error");
         }
-        setResponseData(response);
       })
       .catch((error) => {
         setSentStatus("error");

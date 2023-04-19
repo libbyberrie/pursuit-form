@@ -38,22 +38,18 @@ export function useMailtrapSender() {
     })
       .then((response) => {
         if (response && response.status === 200) {
-          setSentStatus("success");
-          // console.log("we are gonna send an email now");
-          // console.dir(data);
-
           const templateId = "template_5f9my3a";
           window.emailjs
             .send("service_67ywmvb", templateId, emailData)
             .then((res) => {
-              // console.log("Email successfully sent!");
-              // console.dir(res);
+              console.log("Email successfully sent!");
+              console.dir(res);
+              setSentStatus("success");
             })
             .catch((err) => console.error(err));
         } else {
           setSentStatus("error");
         }
-        // console.dir(data);
         setResponseData(response);
       })
       .catch((error) => {
@@ -100,7 +96,7 @@ export function useMailtrapSender() {
       default:
         return <></>;
     }
-    //I have to ignore the exhaustive dependencies for this line here - if i fulfill the linter it just goes into an endless loop.
+    //I have to ignore the exhaustive dependencies lint rule for this line here - if i fulfill the linter it just goes into an endless loop.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [awBeans]);
 

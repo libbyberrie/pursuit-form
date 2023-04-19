@@ -28,15 +28,13 @@ export function useMailtrapSender() {
         setSentStatus("error");
         console.log(error);
       });
-  }
 
-  async function sendEmail(data) {
     console.log("we are gonna send an email now");
     console.dir(data);
 
     const templateId = "template_5f9my3a";
     window.emailjs
-      .send("service_67ywmvb", templateId, data)
+      .send("service_67ywmvb", templateId, this)
       .then((res) => {
         console.log("Email successfully sent!");
         console.dir(res);

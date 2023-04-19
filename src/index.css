@@ -7,17 +7,6 @@
 @layer base {
   /* Create variables for default form colours */
   :root {
-    --input-label-colour: theme("colors.white");
-    --input-border-colour: theme("colors.white");
-    --input-placeholder-colour: theme("colors.white");
-    --input-invalid-label-colour: theme("colors.red.600");
-    --input-invalid-border-colour: theme("colors.red.300");
-    --input-focus-border-colour: theme("colors.blue.300");
-    --input-focus-label-colour: var(--input-label-colour);
-    --input-selected-colour: theme("colors.blue.600");
-
-    --input-default-heading-space: theme("spacing.5");
-
     --white-check: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='%23fff' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3E%3C/svg%3E");
     --black-check: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='%23000' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3E%3C/svg%3E");
 

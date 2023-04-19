@@ -219,7 +219,7 @@ export default function Form() {
 
         <div
           id="response-zone"
-          className="flex flex-col items-center justify-center gap-6"
+          className="flex flex-col items-start justify-center gap-6"
         >
           {responseMessage}
           <input

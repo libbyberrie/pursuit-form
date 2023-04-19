@@ -14,7 +14,7 @@ export default function Form() {
 
   const onSubmit = (data, e) => {
     e.preventDefault();
-    sendIt(data, e);
+    sendIt({JSON.stringify(data, null, 2)}, e);
   };
 
   const learningAgreementValue = watch("work-plan-approval");

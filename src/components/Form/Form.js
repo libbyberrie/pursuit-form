@@ -132,12 +132,12 @@ export default function Form() {
           id="response-zone"
           className="flex flex-col items-center justify-center gap-6"
         >
+          {responseMessage}
           <input
             type="submit"
             className="px-8 py-3 text-2xl rounded-3xl text-semibold bg-pursuit-green-light text-pursuit-green border-4 border-pursuit-green hover:bg-pursuit-green-dark hover:text-white disabled:grayscale disabled:opacity-70 disabled:pointer-events-none"
             disabled={sentStatus && sentStatus !== "unsent"}
           />
-          {responseMessage}
         </div>
       </form>
     </>

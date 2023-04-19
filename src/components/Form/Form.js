@@ -47,8 +47,8 @@ export default function Form() {
         ? "opacity-[100%] h-[100%] max-h-[2000px] md:max-h-[700px] pb-8"
         : "opacity-[0%] max-h-[0px] pointer-events-none",
       accessibility: accessibilityRequirement
-        ? "opacity-[100%] h-[100%] max-h-[2000px] md:max-h-[700px] w-full md:w-[85%] pb-8"
-        : "opacity-[0%] max-h-[0px] pointer-events-none w-full md:w-[85%]",
+        ? "opacity-[100%] h-[100%] max-h-[2000px] md:max-h-[700px] w-full md:w-[85%] xl:w-[90%] pb-8"
+        : "opacity-[0%] max-h-[0px] pointer-events-none w-full md:w-[85%] xl:w-[90%]",
     }),
     [accessibilityRequirement, reasonRequirement]
   );
@@ -60,7 +60,7 @@ export default function Form() {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-y-6 p-4 md:pl-12 items-start justify-center"
+        className="flex flex-col gap-y-6 p-4 md:pl-8 items-start justify-center"
         method="POST"
         netlify="true"
         encType="multipart/form-data"
@@ -92,7 +92,7 @@ export default function Form() {
           />
         </div>
         <div
-          className={`flex flex-col w-full md:w-[85%] gap-y-10 -my-3 pb-6 transition-all duration-400 ease-in-out ${showOnValue.planned}`}
+          className={`flex flex-col w-full md:w-[85%] xl:w-[90%] gap-y-10 -my-3 pb-6 transition-all duration-400 ease-in-out ${showOnValue.planned}`}
           aria-hidden={!reasonRequirement}
         >
           <div className="relative">
@@ -131,7 +131,7 @@ export default function Form() {
             register={register}
           />
         </div>
-        <div className="relative md:w-[85%]">
+        <div className="relative md:w-[85%] xl:w-[90%]">
           <span
             className={`${errorClasses} ${
               errors["adjustments-required"] && "opacity-100"

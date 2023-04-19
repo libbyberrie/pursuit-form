@@ -4,17 +4,7 @@ export function useMailtrapSender() {
   const [sentStatus, setSentStatus] = useState("unsent");
   const [responseData, setResponseData] = useState();
 
-  function zipIt(fileInput) {
-    const zip = new JSZip();
-    const fileArray = [...fileInput];
-    fileArray.forEach((file) => zip.file(file.name, file));
-
-    zip.generateAsync({ type: "base64" }).then((filestring) => {
-      return filestring;
-    });
-  }
-
-  function sendIt(data, event) {
+  function sendToEmailJs(data, event, files) {
     setSentStatus("sending");
 
     const formatReasons =
@@ -28,8 +18,8 @@ export function useMailtrapSender() {
       aims: data.aims,
       adjustments: data["adjustments-required"],
       details: data["accessibility-details"],
-      doczip: zipIt(data.documentation),
     };
+    files ? (emailData.doczip = files) : (emailData.doczip = null);
 
     fetch("/", {
       method: "POST",
@@ -56,6 +46,20 @@ export function useMailtrapSender() {
         setSentStatus("error");
         console.log(error);
       });
+  }
+
+  function sendIt(data, event) {
+    if (!data.documentation) {
+      sendToEmailJs(data, event);
+    } else {
+      const zip = new JSZip();
+      const fileArray = [...data.documentation];
+      fileArray.forEach((file) => zip.file(file.name, file));
+
+      zip.generateAsync({ type: "base64" }).then((filestring) => {
+        sendToEmailJs(data, event, filestring);
+      });
+    }
   }
 
   const waiting = (

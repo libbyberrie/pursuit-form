@@ -26,14 +26,21 @@ export function useMailtrapSender() {
   }
 
   async function sendEmail(data) {
+    console.log("we are gonna send an email now");
+    console.dir(data);
+    const filteredData = data.fromEntries(
+      data.entries.filter(([_, v]) => v != null)
+    );
     const emailDetails = {
-      message: data,
+      message: filteredData,
+      attachments: data.documentation,
     };
     const templateId = "template_5f9my3a";
     window.emailjs
       .send("service_67ywmvb", templateId, emailDetails)
       .then((res) => {
         console.log("Email successfully sent!");
+        console.dir(emailDetails);
         console.dir(res);
       })
       .catch((err) => console.error(err));

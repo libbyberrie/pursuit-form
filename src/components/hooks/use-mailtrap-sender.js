@@ -1,18 +1,35 @@
 import React, { useMemo, useState } from "react";
+import JSZip from "jszip";
 export function useMailtrapSender() {
   const [sentStatus, setSentStatus] = useState("unsent");
   const [responseData, setResponseData] = useState();
+
+  function zipIt(fileInput) {
+    const zip = new JSZip();
+
+    fileInput.forEach((file) => zip.file(file.name, file));
+
+    zip.generateAsync({ type: "blob" }).then((blob) => {
+      const zippedFiles = new File([blob], "submission-zip.zip", {
+        lastModified: Date.now(),
+        type: "application/zip",
+      });
+      return zippedFiles;
+    });
+  }
+
   function sendIt(data, event) {
     console.log("sent to hook successfully");
     setSentStatus("sending");
 
     const emailData = {
+      fullname: "name",
       plan: data["work-plan-approval"],
-      reasons: data.reasons,
+      reasons: data.reasons.join(", "),
       aims: data.aims,
       adjustments: data["adjustments-required"],
       details: data["accessibility-details"],
-      docs: data.documentation,
+      doczip: zipIt(data.documentation),
     };
     // const filteredData = data.fromEntries(
     //   data.entries.filter(([_, v]) => v != null)

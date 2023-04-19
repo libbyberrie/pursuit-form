@@ -12,7 +12,7 @@ export function useMailtrapSender() {
       .then((response) => {
         if (response && response.status === 200) {
           setSentStatus("success");
-          sendEmail(event.target.value);
+          sendEmail(data);
         } else {
           setSentStatus("error");
         }

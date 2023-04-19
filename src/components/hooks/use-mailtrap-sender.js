@@ -5,6 +5,11 @@ export function useMailtrapSender() {
   function sendIt(data, event) {
     console.log("sent to hook successfully");
     setSentStatus("sending");
+
+    // const filteredData = data.fromEntries(
+    //   data.entries.filter(([_, v]) => v != null)
+    // );
+    // console.dir(filteredData);
     fetch("/", {
       method: "POST",
       body: new FormData(event.target),
@@ -28,11 +33,9 @@ export function useMailtrapSender() {
   async function sendEmail(data) {
     console.log("we are gonna send an email now");
     console.dir(data);
-    const filteredData = data.fromEntries(
-      data.entries.filter(([_, v]) => v != null)
-    );
+
     const emailDetails = {
-      message: filteredData,
+      message: data,
       attachments: data.documentation,
     };
     const templateId = "template_5f9my3a";

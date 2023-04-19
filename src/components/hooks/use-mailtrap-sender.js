@@ -31,9 +31,9 @@ export function useMailtrapSender() {
           window.emailjs
             .send("service_67ywmvb", templateId, emailData)
             .then((res) => {
-              console.log("Email successfully sent!");
-              console.dir(emailData);
-              console.dir(res);
+              // console.log("Email successfully sent!");
+              // console.dir(emailData);
+              // console.dir(res);
               setSentStatus("success");
             })
             .catch((err) => console.error(err));

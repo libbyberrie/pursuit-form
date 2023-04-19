@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNetlifyForms } from "../hooks/use-netlify-forms";
+import { useMailtrapSender } from "../hooks/use-mailtrap-sender";
 
 import Radio from "../fields/Radio";
 import Checkbox from "../fields/CheckBox";
@@ -10,7 +10,7 @@ import FileUpload from "../fields/FileUpload";
 
 export default function Form() {
   const { watch, register, handleSubmit } = useForm();
-  const { sendIt, responseMessage, sentStatus } = useNetlifyForms();
+  const { sendIt, responseMessage, sentStatus } = useMailtrapSender();
 
   const onSubmit = (data, e) => {
     e.preventDefault();

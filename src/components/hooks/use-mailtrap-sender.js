@@ -64,27 +64,18 @@ export function useMailtrapSender() {
   }
 
   const waiting = (
-    <div className="bg-yellow-200 border-4 rounded-md p-12 text-center border-yellow-500 text-yellow-700">
+    <div className="bg-yellow-200 border-4 rounded-md p-6 text-center border-yellow-500 text-yellow-700">
       Processing...
     </div>
   );
   const successMessage = (
-    <div className="bg-lime-200 border-4 rounded-md p-12 text-center border-lime-500 text-lime-700">
+    <div className="bg-lime-200 border-4 rounded-md p-6 text-center border-lime-500 text-lime-700">
       Your application has been succcessfully submitted. Thank you!
     </div>
   );
   const awBeans = (
-    <div className="bg-rose-200 border-4 rounded-md p-12 text-center border-rose-500 text-rose-700">
-      Something went wrong.
-      {responseData && (
-        <span> Netlify's servers returned a {responseData.status}. </span>
-      )}
-      Please contact your administrator.
-    </div>
-  );
-  const validateMePlease = (
-    <div className="bg-rose-200 border-4 rounded-md p-12 text-center border-rose-500 text-rose-700">
-      This will be replaced with a better error message eventually!
+    <div className="bg-rose-200 border-4 rounded-md p-6 text-center border-rose-500 text-rose-700">
+      Something went wrong. Please contact your administrator.
     </div>
   );
 
@@ -96,8 +87,6 @@ export function useMailtrapSender() {
         return successMessage;
       case "error":
         return awBeans;
-      case "validation":
-        return validateMePlease;
       default:
         return <></>;
     }

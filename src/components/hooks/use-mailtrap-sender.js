@@ -6,16 +6,11 @@ export function useMailtrapSender() {
 
   function zipIt(fileInput) {
     const zip = new JSZip();
-
     const fileArray = [...fileInput];
     fileArray.forEach((file) => zip.file(file.name, file));
 
-    zip.generateAsync({ type: "blob" }).then((blob) => {
-      const zippedFiles = new File([blob], "submission-zip.zip", {
-        lastModified: Date.now(),
-        type: "application/zip",
-      });
-      return zippedFiles;
+    zip.generateAsync({ type: "base64" }).then((filestring) => {
+      return filestring;
     });
   }
 

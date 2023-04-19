@@ -1,27 +1,65 @@
 import React, { useMemo, useState } from "react";
-export function useNetlifyForms() {
+import JSZip from "jszip";
+export function useMailtrapSender() {
   const [sentStatus, setSentStatus] = useState("unsent");
   const [responseData, setResponseData] = useState();
-  function sendIt(data, event) {
-    console.log("sent to hook successfully");
+
+  function sendToEmailJs(data, event, files) {
     setSentStatus("sending");
+
+    const formatReasons =
+      typeof data.reasons === Array && data.reasons.length > 1
+        ? data.reasons.join(", ")
+        : data.reasons;
+    const emailData = {
+      fullname: "name",
+      plan: data["work-plan-approval"],
+      reasons: formatReasons,
+      aims: data.aims,
+      adjustments: data["adjustments-required"],
+      details: data["accessibility-details"],
+    };
+    files ? (emailData.doczip = files) : (emailData.doczip = null);
+
     fetch("/", {
       method: "POST",
       body: new FormData(event.target),
     })
       .then((response) => {
         if (response && response.status === 200) {
-          setSentStatus("success");
+          const templateId = "template_5f9my3a";
+          window.emailjs
+            .send("service_67ywmvb", templateId, emailData)
+            .then((res) => {
+              // console.log("Email successfully sent!");
+              // console.dir(emailData);
+              // console.dir(res);
+              setSentStatus("success");
+            })
+            .catch((err) => console.error(err));
         } else {
           setSentStatus("error");
         }
-        console.dir(data);
         setResponseData(response);
       })
       .catch((error) => {
         setSentStatus("error");
         console.log(error);
       });
+  }
+
+  function sendIt(data, event) {
+    if (!data.documentation) {
+      sendToEmailJs(data, event);
+    } else {
+      const zip = new JSZip();
+      const fileArray = [...data.documentation];
+      fileArray.forEach((file) => zip.file(file.name, file));
+
+      zip.generateAsync({ type: "base64" }).then((filestring) => {
+        sendToEmailJs(data, event, filestring);
+      });
+    }
   }
 
   const waiting = (
@@ -62,7 +100,7 @@ export function useNetlifyForms() {
       default:
         return <></>;
     }
-    //I have to ignore the exhaustive dependencies for this line here - if i fulfill the linter it just goes into an endless loop.
+    //I have to ignore the exhaustive dependencies lint rule for this line here - if i fulfill the linter it just goes into an endless loop.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [awBeans]);
 

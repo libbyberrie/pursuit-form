@@ -29,12 +29,10 @@ export function useMailtrapSender() {
         if (response && response.status === 200) {
           const templateId = "template_5f9my3a";
           window.emailjs
-            .send("service_67ywmvb", templateId, emailData)
+            .send("service_ossamsb", templateId, emailData)
             .then((res) => {
-              // console.log("Email successfully sent!");
-              // console.dir(emailData);
-              // console.dir(res);
               setSentStatus("success");
+              console.dir(res);
             })
             .catch((err) => console.error(err));
         } else {

@@ -19,7 +19,7 @@ export default function Checkbox(props) {
         <input
           type="checkbox"
           id={`${fieldName}-${index}`}
-          className="form form-checkbox mr-2 h-8 w-8 rounded-xl transition-all duration-300 border-pursuit-green hover:bg-pursuit-green-dark  active:bg-pursuit-green-dark bg-transparent checked:bg-pursuit-green checked:border-pursuit-green-light"
+          className="form form-checkbox mr-2 h-8 w-8 rounded-xl transition-all duration-300 border-pursuit-green hover:bg-pursuit-green-light  active:bg-pursuit-green-dark bg-transparent checked:bg-pursuit-green checked:border-pursuit-green-light"
           name={fieldName}
           value={entry}
           {...register(fieldName, {
@@ -27,7 +27,9 @@ export default function Checkbox(props) {
             disabled: disabled,
           })}
         />
-        <label htmlFor={`${fieldName}-${index}`}>{entry}</label>
+        <label className="text-base" htmlFor={`${fieldName}-${index}`}>
+          {entry}
+        </label>
       </div>
     );
   });
@@ -47,7 +49,7 @@ export default function Checkbox(props) {
             </span>
           )}
         </legend>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-4 lg:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2  gap-6 md:gap-4 lg:gap-6">
           {optionButtons}
         </div>
       </fieldset>

@@ -45,11 +45,11 @@ export default function Form() {
   const showOnValue = useMemo(
     () => ({
       planned: reasonRequirement
-        ? "opacity-[100%] h-[100%] max-h-[2000px] md:max-h-[700px] pb-8"
+        ? "opacity-[100%] h-[100%] max-h-[800px] md:max-h-[700px] pb-8"
         : "opacity-[0%] max-h-[0px] pointer-events-none",
       accessibility: accessibilityRequirement
-        ? "opacity-[100%] h-[100%] max-h-[2000px] md:max-h-[700px] w-full md:w-[85%] xl:w-[90%] pb-8"
-        : "opacity-[0%] max-h-[0px] pointer-events-none w-full md:w-[85%] xl:w-[90%]",
+        ? "opacity-[100%] h-[100%] max-h-[800px] md:max-h-[700px] w-full md:w-[90%] xl:w-[90%] pb-8"
+        : "opacity-[0%] max-h-[0px] pointer-events-none w-full md:w-[90%] xl:w-[90%]",
     }),
     [accessibilityRequirement, reasonRequirement]
   );
@@ -77,7 +77,7 @@ export default function Form() {
             <span
               className={`${errorClasses} ${
                 errors["full-name"] && "opacity-100"
-              }`}
+              } bottom-6 z-10`}
               aria-hidden={!errors["full-name"]}
             >
               {errors["full-name"] && errors["full-name"].message}
@@ -92,7 +92,9 @@ export default function Form() {
           </div>
           <div className="relative flex-1">
             <span
-              className={`${errorClasses} ${errors["email"] && "opacity-100"}`}
+              className={`${errorClasses} ${
+                errors["email"] && "opacity-100"
+              } bottom-6 z-10`}
               aria-hidden={!errors["email"]}
             >
               {errors["email"] && errors["email"].message}
@@ -110,7 +112,7 @@ export default function Form() {
           <span
             className={`${errorClasses} ${
               errors["work-plan-approval"] && "opacity-100"
-            }`}
+            } !left-0 translate-x-0`}
             aria-hidden={!errors["work-plan-approval"]}
           >
             {errors["work-plan-approval"] &&
@@ -126,7 +128,7 @@ export default function Form() {
           />
         </div>
         <div
-          className={`flex flex-col w-full md:w-[85%] xl:w-[90%] gap-y-10 -my-3 pb-6 transition-all duration-400 ease-in-out ${showOnValue.planned}`}
+          className={`flex flex-col w-full md:w-[90%] xl:w-[90%] gap-y-10 -my-3 pb-6 transition-all duration-500 ease-in-out ${showOnValue.planned}`}
           aria-hidden={!reasonRequirement}
         >
           <div className="relative">
@@ -165,11 +167,11 @@ export default function Form() {
             register={register}
           />
         </div>
-        <div className="relative md:w-[85%] xl:w-[90%]">
+        <div className="relative md:w-[90%] xl:w-[90%]">
           <span
             className={`${errorClasses} ${
               errors["adjustments-required"] && "opacity-100"
-            }`}
+            } !left-0 translate-x-0`}
             aria-hidden={!errors["adjustments-required"]}
           >
             {errors["adjustments-required"] &&
@@ -185,7 +187,7 @@ export default function Form() {
           />
         </div>
         <div
-          className={`transition-all duration-400 -my-3 ease-in-out ${showOnValue.accessibility}`}
+          className={`transition-all duration-500 -my-3 -mb-6 ease-in-out ${showOnValue.accessibility}`}
           aria-hidden={!accessibilityRequirement}
         >
           <div className="relative">
@@ -207,7 +209,7 @@ export default function Form() {
             />
           </div>
         </div>
-        <div className="w-full md:w-80%">
+        <div className="w-full mt-6 md:w-80%">
           <FileUpload
             instruction="Please upload any supporting documentation to support your registration request"
             detail="Hold shift or control to select multiple documents. Accepted file formats are .txt, .doc, .docx and .zip"
@@ -219,7 +221,7 @@ export default function Form() {
 
         <div
           id="response-zone"
-          className="flex flex-col items-start justify-center gap-6"
+          className="flex flex-col items-center justify-center gap-6"
         >
           {responseMessage}
           <input

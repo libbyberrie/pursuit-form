@@ -14,10 +14,10 @@ export function useMailtrapSender() {
       fullname: data["full-name"],
       email: data["email"],
       plan: data["work-plan-approval"],
-      reasons: formatReasons,
-      aims: data.aims,
+      reasons: formatReasons || "-",
+      aims: data.aims || "-",
       adjustments: data["adjustments-required"],
-      details: data["accessibility-details"],
+      details: data["accessibility-details"] || "-",
     };
     files ? (emailData.doczip = files) : (emailData.doczip = null);
 
@@ -29,12 +29,10 @@ export function useMailtrapSender() {
         if (response && response.status === 200) {
           const templateId = "template_5f9my3a";
           window.emailjs
-            .send("service_67ywmvb", templateId, emailData)
+            .send("service_ossamsb", templateId, emailData)
             .then((res) => {
-              // console.log("Email successfully sent!");
-              // console.dir(emailData);
-              // console.dir(res);
               setSentStatus("success");
+              console.dir(res);
             })
             .catch((err) => console.error(err));
         } else {

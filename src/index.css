@@ -17,6 +17,7 @@
   }
 
   html {
+    @apply bg-pursuit-green-light;
     margin: 0;
     scroll-behavior: smooth;
     font-family: "Nunito Sans", "Fira Sans", "Droid Sans", "Helvetica Neue",

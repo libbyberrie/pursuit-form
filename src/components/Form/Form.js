@@ -112,7 +112,7 @@ export default function Form() {
           <span
             className={`${errorClasses} ${
               errors["work-plan-approval"] && "opacity-100"
-            } left-0 translate-x-0`}
+            } !left-0 translate-x-0`}
             aria-hidden={!errors["work-plan-approval"]}
           >
             {errors["work-plan-approval"] &&
@@ -171,7 +171,7 @@ export default function Form() {
           <span
             className={`${errorClasses} ${
               errors["adjustments-required"] && "opacity-100"
-            } left-0 translate-x-0`}
+            } !left-0 translate-x-0`}
             aria-hidden={!errors["adjustments-required"]}
           >
             {errors["adjustments-required"] &&

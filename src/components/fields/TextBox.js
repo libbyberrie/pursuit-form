@@ -1,16 +1,18 @@
 import React from "react";
 import "./DynamicLabels.css";
 
-export default function TextField(props) {
-  const { fieldName, instruction, detail, required, disabled, register } = {
-    ...props,
-  };
+export default function TextBox(props) {
+  const { type, fieldName, instruction, detail, required, disabled, register } =
+    {
+      ...props,
+    };
 
   return (
     <div className="dynamic-label group relative z-0 mt-3 rounded-md border-4 cursor-text border-pursuit-green-light bg-transparent p-0 transition-all">
-      <textarea
+      <input
+        type={type}
         id={`${fieldName}-input`}
-        className="form form-textarea peer w-full outline-none focus:outline-none peer  min-h-[8rem] md:min-h-[7rem] disabled:cursor-disabled block rounded-md border-none bg-transparent p-4 text-zinc-800 disabled:opacity-20"
+        className="form form-input peer w-full outline-none focus:outline-none peer disabled:cursor-disabled block rounded-md border-none bg-transparent p-4 text-zinc-800 disabled:opacity-20"
         name={fieldName}
         placeholder="&nbsp;"
         {...register(fieldName, {

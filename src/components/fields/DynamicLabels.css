@@ -1,0 +1,31 @@
+/* Focus styles */
+
+.dynamic-label textarea:focus-visible,
+.dynamic-label textarea:active,
+.dynamic-label input:focus-visible,
+.dynamic-label input:active {
+  @apply outline-none;
+}
+
+.dynamic-label textarea:focus + label,
+.dynamic-label textarea:active + label,
+.dynamic-label textarea:not(:placeholder-shown) + label,
+.dynamic-label input:focus + label,
+.dynamic-label input:active + label,
+.dynamic-label input:not(:placeholder-shown) + label {
+  @apply -top-4 md:-top-3.5  text-zinc-800 translate-y-0;
+}
+.dynamic-label textarea:not(:placeholder-shown) + label .detail,
+.dynamic-label input:not(:placeholder-shown) + label .detail {
+  @apply opacity-0;
+}
+.dynamic-label textarea:invalid + label,
+.dynamic-label input:invalid + label {
+  @apply top-1/2 -translate-y-1/2;
+}
+.dynamic-label textarea:focus + label span.detail,
+.dynamic-label textarea:active + label span.detail,
+.dynamic-label input:focus + label span.detail,
+.dynamic-label input:active + label span.detail {
+  @apply opacity-0;
+}

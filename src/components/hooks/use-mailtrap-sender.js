@@ -14,10 +14,10 @@ export function useMailtrapSender() {
       fullname: data["full-name"],
       email: data["email"],
       plan: data["work-plan-approval"],
-      reasons: formatReasons,
-      aims: data.aims,
+      reasons: formatReasons || "-",
+      aims: data.aims || "-",
       adjustments: data["adjustments-required"],
-      details: data["accessibility-details"],
+      details: data["accessibility-details"] || "-",
     };
     files ? (emailData.doczip = files) : (emailData.doczip = null);
 

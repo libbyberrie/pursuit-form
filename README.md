@@ -1,6 +1,30 @@
-# Pursuit Technical Assessment - student application form.
+# Pursuit Technical Assessment - Student Registration form.
+
+https://pursuit-registration-form.netlify.app
 
 Originally bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## A note about time taken
+
+My background experience in Frontend JS is majoritively based in Vue and Gridsome. While i do have some experience with react metaframeworks (Gatsby), this is the first time I've really dealt with vanilla React in a client-side rendering context, and also the first time working with MailTrap and EmailJS, so there was a fair bit of extra time committed to research and experimentation during the project. For the sake of transparency I should mention that **including setup, research and experimentation I probably spent 12 hours total on this project**.
+
+## Libraries and services used
+
+For the sake of ease, the following libraries were used:
+
+- tailwind.css was used for their utility classes. I noticed that you used it (or something similar) for Pursuit and Acorn, so assumed it was fair game.
+- react-hook-form - provided easy hook functionality for me to check for form values in conditional form rendering.
+
+For mail sending and data collection...
+
+- Netlify was originally used to start receiving form data as it is what I am most familiar with. However, they do not support sending files as attachments- nor multiple files in one field. While I changed the mail sender, I kept netlify's form detection functionality as Netlify's form submissions tracker was useful for monitoring form data structure on send.
+- EmailJS was used as a "serverless" delivery service, as it allowed me to send "from" the email address i registered my account with during testing. (This was chosen as i did not have the time to purchase/configure a domain for sending at this time)
+  - MailTrap SMTP details were configured in EmailJS - [details of the process was documented by MailTrap](https://mailtrap.io/blog/react-send-email/).
+- As part of their email template system, EmailJS only handles one file per field variable. Instead of trying to account for an unknown amount of files, or putting a maximum limit on files alone, i took the approach of compressing all the files into a .zip and attaching it to one variable. To do this, i chose [JSZip](https://www.npmjs.com/package/jszip), as it had the option to encode the zip in a format that EmailJS could accept.
+
+## Interesting things I have learnt
+
+- As netlify's original intention was for hosting sites that use Server Side Rendering, their form registration and validation is done on Build. So even though my form is handled using JSX clientside, i _also_ had to create the form as just HTML in /public/. This allows Netlify to find the form variables, and then retrieve the values on submit.
 
 <details>
 <summary>Create React App original readme documentation</summary>
@@ -73,17 +97,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 </details>
-
-## Libraries used
-
-For the sake of time, the following libraries were used:
-
-- tailwind.css was used for their utility classes
-- react-hook-form - provided easy hook functionality for me to check for form values in conditional form rendering.
-
-For mail sending and data collection...
-
-- Netlify was originally used to start receiving form data, however they do not support sending files attachments- nor multiple files in one field.
-  - We changed mailing solution but i kept the post request to netlify in there as it was good for tracking form data-structure as it was sent.
-- EmailJS was used as a "serverless" delivery service, as it allowed me to send "from" the email address i registered my account with. (This was chosen as i did not have the time to purchase/conofigure a domain for sending at this time)
--

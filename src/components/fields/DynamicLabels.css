@@ -19,8 +19,7 @@
 .dynamic-label input:not(:placeholder-shown) + label .detail {
   @apply opacity-0;
 }
-.dynamic-label textarea:invalid + label,
-.dynamic-label input:invalid + label {
+.dynamic-label textarea:invalid + label {
   @apply top-1/2 -translate-y-1/2;
 }
 .dynamic-label textarea:focus + label span.detail,
